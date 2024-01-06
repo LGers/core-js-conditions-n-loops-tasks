@@ -130,8 +130,39 @@ function convertToRomanNumerals(/* num */) {
  *  '10,5'    => 'one zero point five'
  *  '1950.2'  => 'one nine five zero point two'
  */
-function convertNumberToString(/* numberStr */) {
-  throw new Error('Not implemented');
+function convertNumberToString(numberStr) {
+  const DICTIONARY = {
+    0: 'zero',
+    1: 'one',
+    2: 'two',
+    3: 'three',
+    4: 'four',
+    5: 'five',
+    6: 'six',
+    7: 'seven',
+    8: 'eight',
+    9: 'nine',
+    '-': 'minus',
+    '.': 'point',
+    ',': 'point',
+  };
+
+  let res = DICTIONARY[numberStr[0]];
+
+  switch (0) {
+    case 0:
+      res = DICTIONARY[numberStr[0]];
+      break;
+
+    default:
+      break;
+  }
+
+  for (let i = 1; i < numberStr.length; i += 1) {
+    res += ` ${DICTIONARY[numberStr[i]]}`;
+  }
+
+  return res;
 }
 
 /**
