@@ -342,8 +342,45 @@ function getBalanceIndex(arr) {
  *          [10, 9,  8,  7]
  *        ]
  */
-function getSpiralMatrix(/* size */) {
-  throw new Error('Not implemented');
+function getSpiralMatrix(size) {
+  const arr = [];
+  for (let i = 0; i < size; i += 1) {
+    arr[i] = [];
+  }
+
+  let row = 0;
+  let col = 0;
+  let maxRow = size - 1;
+  let maxCol = size - 1;
+  let counter = 1;
+
+  while (col <= maxCol && row <= maxRow) {
+    for (let i = col; i <= maxCol; i += 1) {
+      arr[row][i] = counter;
+      counter += 1;
+    }
+    row += 1;
+
+    for (let i = row; i <= maxRow; i += 1) {
+      arr[i][maxCol] = counter;
+      counter += 1;
+    }
+    maxCol -= 1;
+
+    for (let i = maxCol; i >= col; i -= 1) {
+      arr[maxRow][i] = counter;
+      counter += 1;
+    }
+    maxRow -= 1;
+
+    for (let i = maxRow; i >= row; i -= 1) {
+      arr[i][col] = counter;
+      counter += 1;
+    }
+    col += 1;
+  }
+
+  return arr;
 }
 
 /**
@@ -466,8 +503,19 @@ function shuffleChar(str, iterations) {
  * @param {number} number The source number
  * @returns {number} The nearest larger number, or original number if none exists.
  */
-function getNearestBigger(/* number */) {
-  throw new Error('Not implemented');
+function getNearestBigger(number) {
+  const maxNumber = (num) => {
+    const numStr = [...`${num}`];
+
+    return numStr.sort((a, b) => b - a).join('');
+  };
+
+  const max = maxNumber(number);
+
+  for (let i = number + 1; i <= max; i += 1) {
+    if (max === maxNumber(i)) return i;
+  }
+  return number;
 }
 
 module.exports = {
