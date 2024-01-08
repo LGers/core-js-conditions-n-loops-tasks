@@ -503,18 +503,27 @@ function shuffleChar(str, iterations) {
  * @param {number} number The source number
  * @returns {number} The nearest larger number, or original number if none exists.
  */
+const getMaxNumberFromDigits = (num) => {
+  let temp = num;
+  const res = [];
+
+  while (temp / 10 > 0) {
+    res.push(temp % 10);
+    temp = Math.floor(temp / 10);
+  }
+
+  return res.sort((a, b) => b - a).reduce((acc, cur) => acc * 10 + cur, 0);
+};
+
 function getNearestBigger(number) {
-  const maxNumber = (num) => {
-    const numStr = [...`${num}`];
-
-    return numStr.sort((a, b) => b - a).join('');
-  };
-
-  const max = maxNumber(number);
+  const max = getMaxNumberFromDigits(number);
 
   for (let i = number + 1; i <= max; i += 1) {
-    if (max === maxNumber(i)) return i;
+    if (max === getMaxNumberFromDigits(i)) {
+      return i;
+    }
   }
+
   return number;
 }
 
